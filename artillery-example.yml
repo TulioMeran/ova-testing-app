@@ -1,0 +1,24 @@
+config:
+  target: https://ova.arssenasa.gob.do
+  engines:
+    playwright: { extendedMetrics: true }
+  processor: './tests/page/commands/ovaBasic.ts'
+  phases:
+    # injects one user every second for 10 seconds.
+    #- name: constantArrival
+    #  duration: 10
+    #  arrivalRate: 1
+    # ramp up between 1 to 5 users for 10 seconds.
+    #- name: rampUpUsers
+    #  duration: 10
+    #  arrivalRate: 1
+    #  rampTo: 5
+    # fixed: create 15 virtual users for 10 seconds
+    - name: fixed
+      duration: 10
+      arrivalCount: 15
+
+scenarios:
+  - name: OVA_WEB
+    engine: playwright
+    testFunction: 'ovaBasic'
